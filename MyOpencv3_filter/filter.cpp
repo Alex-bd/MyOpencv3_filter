@@ -1,8 +1,8 @@
 /*
 ¶ÔÓÚ½·ÑÎÔëÉù£¬
-¾ùÖµÂË²¨£ºÖ»ÊÇ°ÑÍ¼Ïñ´¦ÀíµÄ¸ü¼ÓÄ£ºı£¬Ã»ÓĞÏû³ıÔëÉù
+¾ùÖµÂË²¨£ºÖ»ÊÇ°ÑÍ¼Ïñ´¦ÀíµÄ¸ü¼ÓÄ£ºı£¬Ã»ÓĞÓĞĞ§Ïû³ıÔëÉù
 ÖĞÖµÂË²¨£ºÄÜ¹»ºÜºÃµÄÏû³ı½·ÑÎÔëÉù
-¸ßË¹ÂË²¨£ºÏû³ı½·ÑÎÔëÉùµÄË®Æ½ºÍ¾ùÖµÂË²¨Ğ§¹û¶¼²»ºÃ£¬µ«ÊÇÍ¼ÏñÄ£ºı³Ì¶È±È¾ùÖµÂË²¨ÒªºÃÒ»µã
+¸ßË¹ÂË²¨£ºÏû³ı½·ÑÎÔëÉùµÄĞ§¹û²»ºÃ£¬µ«ÊÇÍ¼ÏñÄ£ºı³Ì¶È±È¾ùÖµÂË²¨ÒªºÃÒ»µã
 */
 #include <iostream>
 #include <opencv2/core/core.hpp>
@@ -24,11 +24,13 @@ void gaussian(cv::Mat* src, double** _array, int _size);	//Í¨¹ı¸ßË¹º¯Êı¹«Ê½À´¼ÆË
 
 
 void main() {
-	Mat image = imread("D:/photo/zg.png");
+	//Mat image = imread("D:/photo/zg.png");
+	Mat image = imread("D:/CODE/MyOpenCV3/MyOpenCV3/image/2.png");
+
 
 	Mat salt_Image;
 	image.copyTo(salt_Image);	
-	salt(salt_Image, 3000);			//Éú³É½·ÑÎÔëÉù
+	salt(salt_Image, 9000);			//Éú³É½·ÑÎÔëÉù
 	imshow("½·ÑÎÔëÉù", salt_Image);
 	Mat imagejunzhi(image.size(), image.type());
 	Mat image2;
@@ -191,6 +193,7 @@ void gaussian(cv::Mat* _src, double** _array, int _size)
 		
 				for (int k = 0; k < _size; k++) {
 					for (int l = 0; l < _size; l++) {
+						//(f*g)(i,j) = f(i-(k-ai), j-(l-aj))g(k,l)   ai,aj ºË²Î¿¼µã
 						sum += (*_src).ptr<uchar>(i - k + (_size / 2))[j - l + (_size / 2)] * _array[k][l];
 					}
 				}
