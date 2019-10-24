@@ -24,12 +24,12 @@ void gaussian(cv::Mat* src, double** _array, int _size);	//Í¨¹ı¸ßË¹º¯Êı¹«Ê½À´¼ÆË
 
 
 void main() {
-	Mat image = imread("D:/CODE/MyOpenCV3/MyOpenCV3/image/2.png");
+	Mat image = imread("D:/photo/zg.png");
 
 	Mat salt_Image;
 	image.copyTo(salt_Image);	
 	salt(salt_Image, 3000);			//Éú³É½·ÑÎÔëÉù
-
+	imshow("½·ÑÎÔëÉù", salt_Image);
 	Mat imagejunzhi(image.size(), image.type());
 	Mat image2;
 	averFiltering(salt_Image, imagejunzhi);		//¾ùÖµÂË²¨
@@ -172,7 +172,7 @@ double** getGaussianArray(int arr_size, double sigma)
 }
 
 /* ¸ßË¹ÂË²¨ (´ı´¦ÀíÍ¼Æ¬, ¸ßË¹·Ö²¼Êı×é£¬ ¸ßË¹Êı×é´óĞ¡(ºË´óĞ¡) ) */
-void gaussian(cv::Mat* src, double** _array, int _size)
+void gaussian(cv::Mat* _src, double** _array, int _size)
 {
 	cv::Mat temp = (*_src).clone();	//¿ËÂ¡Í¼Ïñ
 	// É¨Ãè
@@ -202,7 +202,7 @@ void gaussian(cv::Mat* src, double** _array, int _size)
 	}
 
 	// ·ÅÈëÔ­Í¼
-	£¨* _src£© = temp.clone();
+	(* _src) = temp.clone();
 }
 
 //²ÊÉ«Í¼ÏñÍ¨µÀ·ÖÀë´¦Àí£¬Ã¿¸öÍ¨µÀ¶¼½øĞĞ¸ßË¹ÂË²¨£¬×îºóºÏ²¢
